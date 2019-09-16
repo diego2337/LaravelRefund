@@ -1,0 +1,53 @@
+{
+	"reembolsos": 
+	[
+		{
+			"name": "Gabriel Josefino",
+			"identification": "00000000000",
+			"jobRole": "Analista",
+			"refunds": [{
+				"date": "2019-08-12 20:15:37",
+				"type": "TICKET",
+				"description": "Gastei com a passagem para Porto Alegre",
+				"value": 108.90
+			}],
+			"createdAt": "2019-08-12 20:15:37"
+		},
+		{
+			"name": "Pedrinho",
+			"identification": "00000000001",
+			"jobRole": "RH",
+			"refunds": [{
+				"date": "2019-07-05 17:20:00",
+				"type": "TICKET",
+				"description": "Cartucho para impressora",
+				"value": 280.00
+			}],
+			"createdAt": "2019-07-05 17:20:00"
+		},
+		{
+			"name": "Felipe Melo",
+			"identification": "00000000002",
+			"jobRole": "Sem mundial",
+			"refunds": [{
+				"date": "2018-02-15 15:23:00",
+				"type": "TICKET",
+				"description": "Vaga na libertadores",
+				"value": 500.00
+			}],
+			"createdAt": "2018-02-15 15:23:00"
+		},
+		{
+			"name": "Jorge Sampaoli",
+			"identification": "00000000003",
+			"jobRole": "Técnico",
+			"refunds": [{
+				"date": "2017-02-15 14:09:55",
+				"type": "TICKET",
+				"description": "Neymar",
+				"value": 478.95
+			}],
+			"createdAt": "2017-02-15 14:09:55"
+		}
+	]
+}
