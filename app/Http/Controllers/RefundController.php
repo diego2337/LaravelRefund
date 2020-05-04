@@ -7,7 +7,7 @@ use App\Refund;
 // use App\Repository\RefundRepository;
 use App\Usuario;
 
-class RefundController extends Controller
+class RefundController extends ControllerAbstract
 {
     // /**
     //  * The refund repository instance.
@@ -30,7 +30,7 @@ class RefundController extends Controller
 
     /**
      * List all refunds for a given user.
-     * 
+     *
      * @param Usuario $user
      * @return Response
      */
@@ -38,7 +38,7 @@ class RefundController extends Controller
     {
         return Refund::where('userId', $user->id)->orderBy('userId', 'asc')->get();
     }
-    
+
     /**
      * Create a new refund.
      *

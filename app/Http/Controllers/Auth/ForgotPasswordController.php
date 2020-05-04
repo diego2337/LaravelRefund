@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControllerAbstract;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
 
-class ForgotPasswordController extends Controller
+class ForgotPasswordController extends ControllerAbstract
 {
     /*
     |--------------------------------------------------------------------------
-    | Password Reset Controller
+    | Password Reset ControllerAbstract
     |--------------------------------------------------------------------------
     |
     | This controller is responsible for handling password reset emails and

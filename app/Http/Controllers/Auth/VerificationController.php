@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControllerAbstract;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 
-class VerificationController extends Controller
+class VerificationController extends ControllerAbstract
 {
     /*
     |--------------------------------------------------------------------------
-    | Email Verification Controller
+    | Email Verification ControllerAbstract
     |--------------------------------------------------------------------------
     |
     | This controller is responsible for handling email verification for any

@@ -7,7 +7,7 @@ use App\Usuario;
 use App\Refund;
 // use App\Repository\UsuarioRepository;
 
-class UsuarioController extends Controller
+class UsuarioController extends ControllerAbstract
 {
     // /**
     //  * The user repository instance.
@@ -41,12 +41,12 @@ class UsuarioController extends Controller
 
     /** Get all refunds from this user */
     // $refunds = Refund::where('userId', $request->identification)->get();
-        
+
     // /** List all refunds */
     // return view('refunds.list', [
     //     'refunds' => $refunds,
     // ]);
-    
+
     /**
      * Create a new user.
      *
@@ -61,7 +61,7 @@ class UsuarioController extends Controller
         $usuario->id = (int)$request->identification;
         $usuario->jobRole = $request->jobRole;
         $usuario->createdAt = $request->createdAt;
-        
+
         $usuario->save();
     }
 }

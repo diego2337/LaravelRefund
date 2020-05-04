@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\ControllerAbstract;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-class LoginController extends Controller
+class LoginController extends ControllerAbstract
 {
     /*
     |--------------------------------------------------------------------------
-    | Login Controller
+    | Login ControllerAbstract
     |--------------------------------------------------------------------------
     |
     | This controller handles authenticating users for the application and

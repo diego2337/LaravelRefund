@@ -15,12 +15,12 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->unsignedBigInteger('id')->unique();
-            $table->string('name');
-            $table->string('jobRole');
+            $table->string('nome');
+            $table->string('funcao');
             $table->dateTime('createdAt');
-            $table->timestamps();
-            /** Constraints */
-            $table->primary('id');
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+
             $table->softDeletes();
         });
     }
