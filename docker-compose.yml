@@ -1,0 +1,40 @@
+version: "3.9"
+services:
+  app:
+    # Path to dockerfile.
+    # '.' represents the current directory in which
+    # docker-compose.yml is present.
+    # build: ./docker
+    image: php:7.2
+
+    # Mapping of container port to host
+    ports:
+      - "8000:80"
+    # Mount volume 
+    volumes:
+      - "/usercode/:/code"
+
+    # Link database container to app container 
+    # for reachability.
+    links:
+      - "database:laravel-refund-local"
+    
+  database:
+    # image to fetch from docker hub
+    image: mysql/mysql-server:5.7
+
+    # Environment variables for startup script
+    # container will use these variables
+    # to start the container with these defined variables. 
+    environment:
+      - "MYSQL_ROOT_PASSWORD=root"
+      - "MYSQL_USER=admin"
+      - "MYSQL_PASSWORD=admin123"
+      - "MYSQL_DATABASE=laravel-refund-local"
+    # Mount init.sql file to automatically run 
+    # and create tables for us.
+    # everything in docker-entrypoint-initdb.d folder
+    # is executed as soon as container is up and running.
+    # volumes:
+    #   - "/usercode/db/init.sql:/docker-entrypoint-initdb.d/init.sql"
+    
