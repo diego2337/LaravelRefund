@@ -1,40 +1,48 @@
-version: "3.9"
+version: "2.0"
 services:
   app:
-    # Path to dockerfile.
-    # '.' represents the current directory in which
-    # docker-compose.yml is present.
-    # build: ./docker
-    image: php:7.2
-
-    # Mapping of container port to host
-    ports:
-      - "8000:80"
-    # Mount volume 
+    build:
+      args:
+        user: sammy
+        uid: 1000
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    image: api
+    container_name: laravel-refund-app
+    restart: unless-stopped
+    working_dir: /var/www/
     volumes:
-      - "/usercode/:/code"
-
-    # Link database container to app container 
-    # for reachability.
-    links:
-      - "database:laravel-refund-local"
-    
-  database:
-    # image to fetch from docker hub
-    image: mysql/mysql-server:5.7
-
-    # Environment variables for startup script
-    # container will use these variables
-    # to start the container with these defined variables. 
+      - ./:/var/www
+    networks:
+      - api
+  db:
+    image: mysql:5.7
+    container_name: api-db
+    restart: unless-stopped
     environment:
-      - "MYSQL_ROOT_PASSWORD=root"
-      - "MYSQL_USER=admin"
-      - "MYSQL_PASSWORD=admin123"
-      - "MYSQL_DATABASE=laravel-refund-local"
-    # Mount init.sql file to automatically run 
-    # and create tables for us.
-    # everything in docker-entrypoint-initdb.d folder
-    # is executed as soon as container is up and running.
-    # volumes:
-    #   - "/usercode/db/init.sql:/docker-entrypoint-initdb.d/init.sql"
-    
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    volumes:
+      - ./docker-compose/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - api
+
+  nginx:
+    image: nginx:1.17-alpine
+    container_name: api-nginx
+    restart: unless-stopped
+    ports:
+      - 8000:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d
+    networks:
+      - api
+
+networks:
+  api:
+    driver: bridge
