@@ -17,12 +17,11 @@ class CreateUsuariosTable extends Migration
     {
         if (!Schema::hasTable('usuarios')) {
             Schema::create('usuarios', function (Blueprint $table) {
-                $table->unsignedBigInteger('id')->unique();
+                $table->bigIncrements('id');
                 $table->string('name');
                 $table->string('jobRole');
                 $table->timestamps();
                 /** Constraints */
-                $table->primary('id');
                 $table->softDeletes();
             });
         }
