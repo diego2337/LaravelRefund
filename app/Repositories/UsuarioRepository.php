@@ -2,9 +2,9 @@
 
 namespace App\Repositories;
 
-use App\Usuario;
+use App\User;
 
-class UsuarioRepository
+class UserRepository
 {
     /**
      * Get all users.
@@ -13,6 +13,6 @@ class UsuarioRepository
      */
     public function allUsers()
     {
-        return Usuario::orderBy('name', 'asc')->get();
+        return User::orderBy('name', 'asc')->get();
     }
 }

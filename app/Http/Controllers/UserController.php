@@ -1,31 +1,30 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Usuario;
-use App\Refund;
-// use App\Repository\UsuarioRepository;
 
-class UsuarioController extends Controller
+class UserController extends Controller
 {
     // /**
     //  * The user repository instance.
     //  *
-    //  * @var UsuarioRepository
+    //  * @var UserRepository
     //  */
-    // protected $usuarios;
+    // protected $Users;
 
     /**
      * Create a new controller instance.
      *
-     * @param UsuarioRepository $usuarios
+     * @param UserRepository $Users
      * @return void
      */
     public function __construct()
     {
         // $this->middleware('auth');
-        // $this->usuarios = $usuarios;
+        // $this->Users = $Users;
     }
 
     /**
@@ -35,18 +34,18 @@ class UsuarioController extends Controller
     public function list()
     {
         /** Get all users */
-        // return Usuario::get();
-        return Usuario::orderBy('id', 'asc')->get();
+        // return User::get();
+        return User::orderBy('id', 'asc')->get();
     }
 
     /** Get all refunds from this user */
     // $refunds = Refund::where('userId', $request->identification)->get();
-        
+
     // /** List all refunds */
     // return view('refunds.list', [
     //     'refunds' => $refunds,
     // ]);
-    
+
     /**
      * Create a new user.
      *
@@ -56,12 +55,12 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         /** Create user */
-        $usuario = new Usuario;
-        $usuario->name = $request->name;
-        $usuario->id = (int)$request->identification;
-        $usuario->jobRole = $request->jobRole;
-        $usuario->createdAt = $request->createdAt;
-        
-        $usuario->save();
+        $User = new User;
+        $User->name = $request->name;
+        $User->id = (int)$request->identification;
+        $User->jobRole = $request->jobRole;
+        $User->createdAt = $request->createdAt;
+
+        $User->save();
     }
 }

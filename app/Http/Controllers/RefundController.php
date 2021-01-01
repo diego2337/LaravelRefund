@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Refund;
 // use App\Repository\RefundRepository;
-use App\Usuario;
+use App\User;
 
 class RefundController extends Controller
 {
@@ -30,15 +30,15 @@ class RefundController extends Controller
 
     /**
      * List all refunds for a given user.
-     * 
-     * @param Usuario $user
+     *
+     * @param User $user
      * @return Response
      */
-    public function list(Usuario $user)
+    public function list(User $user)
     {
         return Refund::where('userId', $user->id)->orderBy('userId', 'asc')->get();
     }
-    
+
     /**
      * Create a new refund.
      *
