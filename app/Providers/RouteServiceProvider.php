@@ -46,9 +46,11 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapApiRoutes()
     {
         Route::prefix('user')
+                ->namespace($this->namespace)
                 ->group(base_path('routes/user.php'));
 
-        Route::prefix('call-costs')
+        Route::prefix('refund')
+            ->namespace($this->namespace)
             ->group(base_path('routes/refund.php'));
     }
 }
