@@ -1,4 +1,4 @@
-version: "2.0"
+version: "3.0"
 services:
   app:
     build:
@@ -13,8 +13,11 @@ services:
     working_dir: /var/www/
     volumes:
       - ./:/var/www
+    environment:
+      XDEBUG_CONFIG: idekey=session_name remote_host=host.docker.internal remote_port=9001 remote_enable=1
     networks:
       - api
+
   db:
     image: mysql:5.7
     container_name: api-db
@@ -44,6 +47,9 @@ services:
       - ./docker-compose/nginx/:/etc/nginx/conf.d
     networks:
       - api
+    environment:
+      XDEBUG_CONFIG: idekey=session_name remote_host=host.docker.internal remote_port=9001 remote_enable=1
+
 
 networks:
   api:

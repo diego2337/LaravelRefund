@@ -1,5 +1,7 @@
 FROM php:7.4-fpm
 
+COPY docker-compose/php/php.ini /usr/local/etc/php/
+
 # Arguments defined in docker-compose.yml
 ARG user
 ARG uid
@@ -19,6 +21,10 @@ RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+
+# XDebug configuration
+RUN apt-get install $PHPIZE_DEPS # dependencies needed by pecl
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
