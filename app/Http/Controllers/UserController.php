@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
-use App\Domain\Services\UserService\UserService;
+use App\Domain\Services\UserService;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response as StatusCode;
 use Illuminate\Support\Facades\Response;
 
-class ExampleController extends Controller
+class UserController extends Controller
 {
     /**
      * The user service instance.

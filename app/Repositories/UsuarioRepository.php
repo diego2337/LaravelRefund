@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\User;
 
-class UserRepository
+class UsuarioRepository
 {
     /**
      * Get all users.

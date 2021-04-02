@@ -6,7 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class UserControllerOLD extends Controller
 {
     // /**
     //  * The user repository instance.

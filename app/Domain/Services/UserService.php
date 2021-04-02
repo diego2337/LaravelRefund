@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Domain\Services\UserService;
+namespace App\Domain\Services;
 
 use Illuminate\Support\Collection;
 use App\Domain\Repositories\UserRepository;

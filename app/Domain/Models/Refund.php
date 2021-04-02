@@ -1,9 +1,8 @@
 <?php
 
-namespace App;
+namespace App\Domain\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Refund extends Model
