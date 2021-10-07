@@ -1,16 +1,15 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Domain\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class Refund extends Model
+class Refund extends BaseModel
 {
-    use SoftDeletes;
+    protected $table = "refund";
 
-    public function usario()
+    public function user()
     {
-        return $this->belongsTo('App\User', 'userId');
+        return $this->belongsTo(User::class, 'userId');
     }
 }

@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace App\Domain\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
-class User extends Model
+class User extends BaseModel
 {
-    use SoftDeletes;
+    protected $table = "user";
+    protected $fillable = [
+        'name',
+        'jobRole',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 
-    public function refunds()
+    public function refund()
     {
-        return $this->hasMany('App\Refund', 'userId');
+        return $this->hasMany(Refund::class, 'userId');
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsuariosTable extends Migration
+class CreateUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateUsuariosTable extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('usuarios')) {
-            Schema::create('usuarios', function (Blueprint $table) {
+        if (!Schema::hasTable('user')) {
+            Schema::create('user', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('name');
                 $table->string('jobRole');
@@ -34,6 +34,6 @@ class CreateUsuariosTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('user');
     }
 }

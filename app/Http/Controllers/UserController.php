@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Http\Controllers;
 
 use App\Domain\Services\UserService;
+use App\Exceptions\UserExceptions;
+use Apps\Http\Requests\UserFormRequest;
 use Exception;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -22,8 +24,7 @@ class UserController extends Controller
 
     /**
      * Create a new UserController instance.
-
-     * @return void
+     * @param UserService $userService
      */
     public function __construct(UserService $userService)
     {
@@ -33,7 +34,7 @@ class UserController extends Controller
     /**
      * Display a list of users.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function index(): JsonResponse
     {
@@ -45,42 +46,36 @@ class UserController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param Request $request
+     * @return JsonResponse
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+        return Response::json($this->userService->insert(), StatusCode::HTTP_OK);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        try {
+            return Response::json($this->userService->show($id), StatusCode::HTTP_OK);
+        } catch(Exception $e) {
+            return Response::json($e, StatusCode::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function edit($id)
     {
@@ -90,11 +85,11 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request $request
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UserFormRequest $request, $id)
     {
         //
     }
@@ -103,7 +98,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\JsonResponse
+     * @return JsonResponse
      */
     public function destroy($id)
     {

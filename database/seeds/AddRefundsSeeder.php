@@ -16,7 +16,7 @@ class AddRefundsSeeder extends Seeder
      */
     public function run(): void
     {
-        DB::table('refunds')->insert([
+        DB::table('refund')->insert([
             ['type' => 'fuel', 'description' => 'Reembolso de combustível', 'value' => 123.45, 'userId' => 2],
             ['type' => 'food', 'description' => 'Reembolso de almoço', 'value' => 27.4, 'userId' => 1],
             ['type' => 'fuel', 'description' => 'Reembolso de combustível', 'value' => 70.37, 'userId' => 3],

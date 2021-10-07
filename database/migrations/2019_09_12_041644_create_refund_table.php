@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateRefundsTable extends Migration
+class CreateRefundTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,8 +15,8 @@ class CreateRefundsTable extends Migration
      */
     public function up(): void
     {
-        if (!Schema::hasTable('refunds')) {
-            Schema::create('refunds', function (Blueprint $table) {
+        if (!Schema::hasTable('refund')) {
+            Schema::create('refund', function (Blueprint $table) {
                 $table->bigIncrements('id');
                 $table->string('type');
                 $table->string('description');
@@ -24,7 +24,7 @@ class CreateRefundsTable extends Migration
                 $table->unsignedBigInteger('userId');
                 $table->timestamps();
                 /** Constraints */
-                $table->foreign('userId')->references('id')->on('usuarios')->onDelete('cascade');
+                $table->foreign('userId')->references('id')->on('user')->onDelete('cascade');
                 $table->softDeletes();
             });
         }
@@ -37,6 +37,6 @@ class CreateRefundsTable extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('refunds');
+        Schema::dropIfExists('refund');
     }
 }
